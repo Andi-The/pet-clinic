@@ -3,7 +3,7 @@ on: [ push ]
 env:
 #### An dieser Stelle müssen eure persönlichen Umgebungsvariablen eingetragen werden
   # Tip: Die Token/der API-Key werden als Secrets in den Repository-Settings eingetragen und hier referenziert.
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+  GITHUB_ACCESSTOKEN: ${{ secrets.GITHUB_ACCESSTOKEN }} 
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 jobs:
   compile:
@@ -24,6 +24,6 @@ jobs:
       run: |
         mvn package
         docker build --tag ghcr.io/andi-the/petclinic:latest -f Dockerfile .
-        docker login --username andi-the --password-stdin $GITHUB_ACCESSTOKEN ghcr.io
+        docker login --username andi-the --password $GITHUB_ACCESSTOKEN ghcr.io
         docker push ghcr.io/andi-the/petclinic:latest
         
