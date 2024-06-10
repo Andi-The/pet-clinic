@@ -24,6 +24,6 @@ jobs:
       run: |
         mvn package
         docker build --tag ghcr.io/andi-the/petclinic:latest -f Dockerfile .
-        docker login --username andi-the --password $GITHUB_ACCESSTOKEN ghcr.io
+        docker login --username andi-the --password-stdin $GITHUB_ACCESSTOKEN ghcr.io
         docker push ghcr.io/andi-the/petclinic:latest
         
